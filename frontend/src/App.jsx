@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [msg, setMsg] = useState("…loading");
+  const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
-    // In Azure Static Web Apps, Functions are auto-mounted at /api/*
-    fetch("/api/hello")
-      .then(r => r.json())
-      .then(d => setMsg(d.message))
-      .catch(() => setMsg("Failed to call API"));
+    const loadMessage = async () => {
+      try {
+        const res = await fetch("/api/hello");   // ✅ this is the correct location
+        const data = await res.json();
+        setMessage(data.message);
+      } catch (err) {
+        setMessage("Failed to call API");
+        console.error(err);
+      }
+    };
+
+    loadMessage();
   }, []);
 
   return (
-    <main style={{fontFamily: "system-ui", padding: 24}}>
+    <main>
       <h1>Azure SWA + Functions</h1>
-      <p>API says: <strong>{msg}</strong></p>
+      <p>{message}</p>
     </main>
   );
 }
