@@ -6,7 +6,7 @@ function App() {
   useEffect(() => {
     const loadMessage = async () => {
       try {
-        const res = await fetch("/api/hello");   // ✅ this is the correct location
+        const res = await fetch("/api/greet?name=Kenath");   // ✅ this is the correct location
         const data = await res.json();
         setMessage(data.message);
       } catch (err) {
