@@ -7,11 +7,12 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-    "engines": {
+  "engines": {
     "node": "20.x"
   },
   "dependencies": {
-    "@azure/functions": "^4.0.0"
+    "@azure/functions": "^4.0.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "azure-functions-core-tools": "^4.x"
